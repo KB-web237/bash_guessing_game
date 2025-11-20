@@ -1,23 +1,26 @@
 #!/bin/bash
-x=$(( 0 + RANDOM % (5 - 0 + 1) ))
-count=0
 echo "=========================================="
-echo "   Guest a number to win between 0 to max you want:  "
+echo "   Guest a number to win between 0 to 5 "
 echo "=========================================="
 read -p "Enter the number of guest you want to play: " upper_limit
-for i in $(seq 1 "$upper_limit")
+start_val=1;
+ while [[ $start_val -le $upper_limit ]]
  do
+  echo "Round $start_val"
+  start_val=$((start_val+1))
+ rand_num=$(( 0 + RANDOM % (5 - 0 + 1) ))
+ 
  read -p "Enter the value you guest: " y
- if [[ $y -eq $x ]] then
+ if [[ $y -eq $rand_num ]] then
  echo "You WIN"
- count++;
-  elif [[ $y -lt $x ]] then
+  elif [[ $y -lt $rand_num ]] then
    echo "You Lose!"
-   #echo "you below the win number"
-   elif [[ $y -gt $x ]] then
+   echo "you below the win number"
+   elif [[ $y -gt $rand_num ]] then
    echo "You Lose!"
    #echo "you are above the win number"
-else
+ else
   echo "Invalid number, Not within the range"
-fi
-echo "the win answer is $x "
+ fi
+ echo "the win answer is $rand_num "
+done 
